@@ -4,8 +4,10 @@ import org.testng.annotations.Test;
 
 public class SampleTest {
     @Test
-    public void testName() throws Exception {
+    public void testA() throws Exception {
+    }
 
-
+    @Test
+    public void testB() throws Exception {
     }
 }
