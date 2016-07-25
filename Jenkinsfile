@@ -5,6 +5,12 @@ node {
     mvn 'clean package'
 }
 
+stage 'QA'
+
+node {
+    mvn 'clean package'
+}
+
 
 
 def mvn(args) {
