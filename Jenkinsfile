@@ -1,11 +1,11 @@
-stage 'Dev'
+stage 'Unit Test'
 
 node {
     checkout scm
     mvn 'clean package'
 }
 
-stage 'QA'
+stage 'Integration'
 
 node {
     mvn 'clean package'
