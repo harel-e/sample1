@@ -1,10 +1,10 @@
-stage 'Dev2'
+stage 'Dev'
 
 node {
-    sh 'echo hello world'
     checkout scm
-    mvn 'clean install'
+    mvn 'clean package'
 }
+
 
 
 def mvn(args) {
