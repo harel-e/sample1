@@ -3,6 +3,7 @@ stage 'Unit Test'
 node {
     checkout scm
     mvn 'clean package'
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/*.xml'])
 }
 
 stage 'Integration'
