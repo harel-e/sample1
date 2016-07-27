@@ -3,7 +3,7 @@ stage 'Unit Test'
 node {
     checkout scm
     mvn 'clean package'
-    step([$class: 'JUnitResultArchiver', testResults: '**/target/*.xml'])
+    step([$class: 'hudson.plugins.testng.Publisher', reportFilenamePattern: 'test-output/testng-results.xml'])
 }
 
 stage 'Integration'
