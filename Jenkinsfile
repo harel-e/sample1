@@ -3,7 +3,7 @@ stage 'Unit Test'
 node {
     checkout scm
     mvn 'clean package'
-    step([$class: 'hudson.plugins.testng.Publisher', reportFilenamePattern: 'test-output/testng-results.xml'])
+    step([$class: 'hudson.plugins.testng.Publisher', reportFilenamePattern: 'target/surefire-reports/testng-results.xml'])
 }
 
 stage 'Integration'
