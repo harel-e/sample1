@@ -13,9 +13,9 @@ node {
         archive 'core/target/*.jar'
         //step([$class: 'Publisher'])
         //step([$class: 'Publisher', reportFilenamePattern: 'core/**/testng-results.xml'])
-        slackSend channel: '#reg_sla_monitoring', color: 'green', message: 'Test Messsage - Build Successful'
+        slackSend channel: '#reg_sla_monitoring', color: 'good', message: 'Test Messsage - Build Successful'
     } catch(e)  {
-        slackSend channel: "#reg_sla_monitoring", color: "green", message: "Test Messsage - ${env.JOB_NAME} ${env.BRANCH_NAME} - Build #${env.BUILD_NUMBER} - FAILED!"
+        slackSend channel: "#reg_sla_monitoring", color: "danger", message: "Test Messsage - ${env.JOB_NAME} ${env.BRANCH_NAME} - Build #${env.BUILD_NUMBER} - FAILED!"
         throw e
     }
 }
