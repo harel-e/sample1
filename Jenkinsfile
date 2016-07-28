@@ -4,7 +4,7 @@ node {
     //sh 'mvn clean package'
 }
 
-stage 'Unit Test'
+stage 'Unit Tests'
 
 node {
     checkout scm
