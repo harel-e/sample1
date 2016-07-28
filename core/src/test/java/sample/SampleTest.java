@@ -2,6 +2,7 @@ package sample;
 
 import org.testng.annotations.Test;
 
+@Test(groups = "unit")
 public class SampleTest {
     @Test
     public void testA() throws Exception {
