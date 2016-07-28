@@ -7,11 +7,11 @@ public class IntegrationTest {
 
     @Test
     public void testIntA() throws Exception {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
     }
 
     @Test
     public void testIntB() throws Exception {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
     }
 }

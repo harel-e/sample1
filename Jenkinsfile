@@ -18,7 +18,7 @@ stage 'Integration Tests'
 
 node {
     mvn 'clean test -Dgroups=unit,integration'
-    step([$class: 'Publisher', reportFilenamePattern: 'integration/**/testng-results.xml'])
+    step([$class: 'Publisher'])
 }
 
 
