@@ -27,4 +27,12 @@ public class SampleTest {
     @Test
     public void testF() throws Exception {
     }
+
+    @Test
+    public void testG() throws Exception {
+    }
+
+    @Test
+    public void testH() throws Exception {
+    }
 }
