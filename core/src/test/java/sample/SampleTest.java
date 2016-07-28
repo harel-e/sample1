@@ -10,4 +10,8 @@ public class SampleTest {
     @Test
     public void testB() throws Exception {
     }
+
+    @Test
+    public void testC() throws Exception {
+    }
 }
