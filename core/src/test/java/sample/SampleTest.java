@@ -15,4 +15,16 @@ public class SampleTest {
     @Test
     public void testC() throws Exception {
     }
+
+    @Test
+    public void testD() throws Exception {
+    }
+
+    @Test
+    public void testE() throws Exception {
+    }
+
+    @Test
+    public void testF() throws Exception {
+    }
 }
