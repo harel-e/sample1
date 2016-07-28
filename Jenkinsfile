@@ -10,11 +10,6 @@ node {
 
 }
 
-stage 'Integration'
-
-node {
-    mvn 'clean package'
-}
 
 
 
