@@ -16,7 +16,7 @@ node {
 stage 'Integration Tests'
 
 node {
-    mvn 'clean test -Dgroups=integration'
+    mvn 'clean test -Dgroups=integration2'
     step([$class: 'Publisher'])
 }
 
