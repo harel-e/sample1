@@ -9,7 +9,7 @@ public class SampleTest {
     }
 
     @Test
-    public void testB() throws Exception {
+    public void testC() throws Exception {
     }
 
     @Test
