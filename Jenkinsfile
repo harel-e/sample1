@@ -5,6 +5,7 @@ node {
     mvn 'clean package'
     step([$class: 'Publisher'])
     //step([$class: 'ArtifactArchiver', artifacts: '*.jar', excludes: null])
+    archive 'core/target/*.jar'
     archive 'target/*.jar'
     //step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
 
