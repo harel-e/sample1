@@ -15,10 +15,7 @@ node {
         //step([$class: 'Publisher', reportFilenamePattern: 'core/**/testng-results.xml'])
         slackSend channel: '#reg_sla_monitoring', color: 'green', message: 'Test Messsage - Build Successful'
     } catch(e)  {
-        slackSend channel: '#reg_sla_monitoring', color: 'green', message: 'Test Messsage - Build Failed'
-        echo e
-        echo "e"
-        throw e
+        slackSend channel: '#reg_sla_monitoring', color: 'green', message: 'Test Messsage - ${env.JOB_NAME} ${env.BRANCH_NAME} - Build #${env.BUILD_NUMBER} - FAILED!'
     }
 }
 
