@@ -1,4 +1,6 @@
-env.JAVA_HOME="${tool 'jdk1.8.0_102'}"
+node {
+    env.JAVA_HOME="${tool 'jdk1.8.0_102'}"
+}
 
 stage 'Unit Test'
 
