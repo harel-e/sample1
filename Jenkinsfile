@@ -12,6 +12,7 @@ node {
     //step([$class: 'Publisher'])
     //step([$class: 'Publisher', reportFilenamePattern: 'core/**/testng-results.xml'])
     archive 'core/target/*.jar'
+    slackSend channel: '#reg_sla_monitoring', color: 'green', message: 'Test Messsage - Build Successful'
 }
 
 stage 'Integration Tests'
