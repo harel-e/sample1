@@ -3,11 +3,16 @@ stage 'Unit Test'
 node {
 
     env.JAVA_HOME="${tool 'jdk1.8.0_102'}"
-    env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-    sh 'java -version'
+    mvn '-v'
+
+    env.JAVA_HOME="${tool 'jdk1.8.0_92'}"
+    mvn '-v'
+
+
+    //env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+    //sh 'java -version'
 
     checkout scm
-    mvn '-v'
     mvn 'clean package'
     step([$class: 'Publisher'])
     archive 'core/target/*.jar'
