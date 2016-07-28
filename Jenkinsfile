@@ -9,15 +9,16 @@ stage 'Unit Tests'
 node {
     checkout scm
     mvn 'clean package -Dgroups=unit'
-    step([$class: 'Publisher'])
+    //step([$class: 'Publisher'])
+    step([$class: 'Publisher', reportFilenamePattern: 'core/**/testng-results.xml'])
     archive 'core/target/*.jar'
 }
 
 stage 'Integration Tests'
 
 node {
-    mvn 'clean test -Dgroups=integration2'
-    step([$class: 'Publisher'])
+    mvn 'clean test -Dgroups=integration'
+    step([$class: 'Publisher', reportFilenamePattern: 'integration/**/testng-results.xml'])
 }
 
 
