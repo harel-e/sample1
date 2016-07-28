@@ -6,7 +6,7 @@ node {
 
 stage 'Unit Tests'
 
-node('linux') {
+node {
     checkout scm
     mvn 'clean package -Dgroups=unit'
     //step([$class: 'Publisher'])
