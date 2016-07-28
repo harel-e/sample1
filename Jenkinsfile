@@ -8,11 +8,16 @@ stage 'Unit Tests'
 
 node {
     checkout scm
-    mvn 'clean package -Dgroups=unit'
-    //step([$class: 'Publisher'])
-    //step([$class: 'Publisher', reportFilenamePattern: 'core/**/testng-results.xml'])
-    archive 'core/target/*.jar'
-    slackSend channel: '#reg_sla_monitoring', color: 'green', message: 'Test Messsage - Build Successful'
+    try {
+        mvn 'clean package -Dgroups=unit'
+        archive 'core/target/*.jar'
+        //step([$class: 'Publisher'])
+        //step([$class: 'Publisher', reportFilenamePattern: 'core/**/testng-results.xml'])
+        slackSend channel: '#reg_sla_monitoring', color: 'green', message: 'Test Messsage - Build Successful'
+    } catch(e)  {
+        slackSend channel: '#reg_sla_monitoring', color: 'green', message: 'Test Messsage - Build Failed'
+        throw e
+    }
 }
 
 stage 'Integration Tests'
