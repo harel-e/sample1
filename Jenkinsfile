@@ -30,8 +30,8 @@ node {
 stage 'Deploy'
 
 node {
-  sshagent (credentials: ['harel-ssh']) {
-    sh 'ssh -o StrictHostKeyChecking=no harel@172.16.63.131 uname -a'
+  sshagent (credentials: ['d43dd4d4-a68f-4401-b098-49827ed06f3f']) {
+    sh 'ssh -o StrictHostKeyChecking=no -l harel 172.16.63.131 uname -a'
   }
 }
 
