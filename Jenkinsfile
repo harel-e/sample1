@@ -27,7 +27,13 @@ node {
     step([$class: 'Publisher'])
 }
 
+stage 'Deploy'
 
+node {
+  sshagent (credentials: ['harel-ssh']) {
+    sh 'ssh -o StrictHostKeyChecking=no harel@172.16.63.131 uname -a'
+  }
+}
 
 def mvn(args) {
     sh "${tool 'Maven 3.x'}/bin/mvn ${args}"
