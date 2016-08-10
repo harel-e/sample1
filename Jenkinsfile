@@ -31,7 +31,7 @@ stage 'Deploy'
 
 node {
   sh 'whoami'
-  sshagent (credentials: ['harel-ssh']) {
+  sshagent (credentials: ['harel-github']) {
     sh 'ssh -o StrictHostKeyChecking=no -l harel 10.47.231.126 uname -a'
   }
 }
