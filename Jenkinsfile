@@ -32,7 +32,7 @@ stage 'Deploy'
 node {
   sh 'whoami'
   sshagent (credentials: ['harel-ssh']) {
-    sh 'ssh -o StrictHostKeyChecking=no -l harel 172.16.63.131 uname -a'
+    sh 'ssh -o StrictHostKeyChecking=no -l harel 10.47.231.126 uname -a'
   }
 }
 
