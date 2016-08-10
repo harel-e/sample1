@@ -1,9 +1,3 @@
-node {
-    env.JAVA_HOME="${tool 'jdk1.8.0_102'}"
-    //env.PATH = "${tool 'Maven 3'}/bin:${env.PATH}"
-    //sh 'mvn clean package'
-}
-
 stage 'Unit Tests'
 
 node {
@@ -31,11 +25,12 @@ stage 'Deploy'
 
 node {
   sh 'whoami'
-  sshagent (credentials: ['harel-github']) {
-    sh 'ssh -o StrictHostKeyChecking=no -l harel 10.47.231.126 uname -a'
-  }
+//  sshagent (credentials: ['harel-github']) {
+//    sh 'ssh -o StrictHostKeyChecking=no -l harel 10.47.231.126 uname -a'
+//  }
 }
 
 def mvn(args) {
+    env.JAVA_HOME="${tool 'jdk1.8.0_102'}"
     sh "${tool 'Maven 3.x'}/bin/mvn ${args}"
 }
