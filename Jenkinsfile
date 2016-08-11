@@ -7,9 +7,9 @@ node {
         archive 'core/target/*.jar'
         //step([$class: 'Publisher'])
         //step([$class: 'Publisher', reportFilenamePattern: 'core/**/testng-results.xml'])
-        slackSend channel: "#reg_sla_monitoring", color: "good", message: "Test Messsage - ${env.JOB_NAME} ${env.BRANCH_NAME} - Build #${env.BUILD_NUMBER} - SUCCESSFUL!"
+        slackSend channel: "#reg_sla_monitoring", color: "good", message: "Build Lab - ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Success"
     } catch(e)  {
-        slackSend channel: "#reg_sla_monitoring", color: "warning", message: "Test Messsage - ${env.JOB_NAME} ${env.BRANCH_NAME} - Build #${env.BUILD_NUMBER} - FAILED!"
+        slackSend channel: "#reg_sla_monitoring", color: "warning", message: "Build Lab - ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Fail"
         throw e
     }
 }
@@ -26,7 +26,7 @@ stage 'Deploy'
 node {
   sh 'whoami'
 //  sshagent (credentials: ['harel-github']) {
-//    sh 'ssh -o StrictHostKeyChecking=no -l harel 10.47.231.126 uname -a'
+//    sh 'ssh -o StrictHostKeyChecking=no -l harel 172.16.63.131 uname -a'
 //  }
 }
 
