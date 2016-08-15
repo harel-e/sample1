@@ -56,9 +56,7 @@
                                     <port>8080</port>
                                 </ports>
                                 <!-- Default command for the build image -->
-                                <cmd>java -Djava.security.egd=file:/dev/./urandom -jar
-                                    /maven/shootout-docker-maven-fabric8.jar
-                                </cmd>
+                                <cmd>java -jar /maven/sample.jar</cmd>
                             </build>
 
                             <!-- ............................................................... -->
