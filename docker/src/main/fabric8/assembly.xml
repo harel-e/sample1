@@ -6,7 +6,7 @@
         <dependencySet>
             <useProjectArtifact>true</useProjectArtifact>
             <includes>
-                <include>sample:core</include>
+                <include>sample:docker</include>
             </includes>
             <outputDirectory>.</outputDirectory>
             <outputFileNameMapping>sample.jar</outputFileNameMapping>
