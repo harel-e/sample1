@@ -18,7 +18,6 @@ stage 'Integration Tests'
 
 node {
     mvn 'clean test -Dgroups=unit,integration'
-    step([$class: 'Publisher'])
 }
 
 stage 'Deploy'
