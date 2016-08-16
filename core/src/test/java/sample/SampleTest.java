@@ -8,6 +8,10 @@ import static org.testng.Assert.fail;
 public class SampleTest {
     @Test
     public void testA() throws Exception {
+        for (int i=0;i<10;i++) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            Thread.sleep(10);
+        }
     }
 
     @Test

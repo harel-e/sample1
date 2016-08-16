@@ -85,6 +85,7 @@
                                     <port>tomcat.port:8080</port>
                                 </ports>
                                 <wait>
+                                    <url>http://${docker.host.address}:${tomcat.port}/test</url>
                                     <time>10000</time>
                                 </wait>
                                 <log>
@@ -117,14 +118,15 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.19.1</version>
                 <executions>
                     <!--
                         Invokes both the integration-test and the verify goals of the
                         Failsafe Maven plugin
                     -->
                     <execution>
-                        <id>integration-tests</id>
                         <phase>integration-test</phase>
                         <goals>
                             <goal>integration-test</goal>
