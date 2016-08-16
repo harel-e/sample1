@@ -2,6 +2,8 @@ package sample;
 
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.fail;
+
 @Test(groups = "unit")
 public class SampleTest {
     @Test
@@ -14,6 +16,7 @@ public class SampleTest {
 
     @Test
     public void testC() throws Exception {
+        fail();
     }
 
     @Test
