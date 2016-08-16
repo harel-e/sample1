@@ -9,7 +9,6 @@ public class IntegrationTest {
 
     @Test
     public void testIntA() throws Exception {
-        fail();
         Thread.sleep(3000);
     }
 
