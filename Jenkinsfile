@@ -10,12 +10,7 @@ node {
 stage 'Integration Tests'
 
 node {
-    try {
         mvn 'clean test -Dgroups=unit,integration'
-    } catch(e) {
-        step([$class: 'Publisher'])
-        throw e
-    }
 }
 
 stage 'Deploy'
