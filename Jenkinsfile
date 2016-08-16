@@ -25,6 +25,7 @@ stage 'Deploy'
 
 node {
   sh 'whoami'
+  mvn 'clean install -DskipTests'
 //  sshagent (credentials: ['harel-github']) {
 //    sh 'ssh -o StrictHostKeyChecking=no -l harel 172.16.63.131 uname -a'
 //  }
