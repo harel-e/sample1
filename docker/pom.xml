@@ -54,7 +54,7 @@
                         <image>
                             <!-- Alias name which can used for linking containers during runtime -->
                             <alias>service</alias>
-                            <name>fabric8/${project.artifactId}:${project.version}</name>
+                            <name>sample/${project.artifactId}:${project.version}</name>
 
                             <!-- ....................................... -->
                             <!-- Build configuration for creating images -->
@@ -108,6 +108,16 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <log.url>http://${docker.host.address}:${tomcat.port}/jolokia</log.url>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
 
 
         </plugins>
