@@ -16,12 +16,10 @@ public class SampleTest {
 
     @Test
     public void testC() throws Exception {
-        fail();
     }
 
     @Test
     public void testD() throws Exception {
-        fail();
     }
 
     @Test
