@@ -10,6 +10,7 @@ node {
         slackSend channel: "#reg_sla_monitoring", color: "good", message: "Build Lab - ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Success"
     } catch(e)  {
         slackSend channel: "#reg_sla_monitoring", color: "warning", message: "Build Lab - ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Fail"
+        step([$class: 'Publisher'])
         throw e
     }
 }
@@ -17,7 +18,12 @@ node {
 stage 'Integration Tests'
 
 node {
-    mvn 'clean test -Dgroups=unit,integration'
+    try {
+        mvn 'clean test -Dgroups=unit,integration'
+    } catch(e) {
+        step([$class: 'Publisher'])
+        throw e
+    }
 }
 
 stage 'Deploy'
