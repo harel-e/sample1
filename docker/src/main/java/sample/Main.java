@@ -2,6 +2,12 @@ package sample;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Main.main");
+        for (int i=0;i<100;i++) {
+            System.out.println("Main.main "+i);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ignore) {
+            }
+        }
     }
 }

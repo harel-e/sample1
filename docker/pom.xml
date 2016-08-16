@@ -84,6 +84,13 @@
                                 <ports>
                                     <port>tomcat.port:8080</port>
                                 </ports>
+                                <wait>
+                                    <time>5000</time>
+                                </wait>
+                                <log>
+                                    <prefix>TC</prefix>
+                                    <color>cyan</color>
+                                </log>
                             </run>
                         </image>
                     </images>
@@ -113,7 +120,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <systemPropertyVariables>
-                        <log.url>http://${docker.host.address}:${tomcat.port}/jolokia</log.url>
+                        <log.url>http://${docker.host.address}:${tomcat.port}</log.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
