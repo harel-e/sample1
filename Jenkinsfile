@@ -2,17 +2,9 @@ stage 'Unit Tests'
 
 node {
     checkout scm
-    try {
         mvn 'clean package -Dgroups=unit'
         archive 'core/target/*.jar'
-        //step([$class: 'Publisher'])
-        //step([$class: 'Publisher', reportFilenamePattern: 'core/**/testng-results.xml'])
         slackSend channel: "#reg_sla_monitoring", color: "good", message: "Build Lab - ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Success"
-    } catch(e)  {
-        slackSend channel: "#reg_sla_monitoring", color: "warning", message: "Build Lab - ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Fail"
-        step([$class: 'Publisher'])
-        throw e
-    }
 }
 
 stage 'Integration Tests'
@@ -39,5 +31,11 @@ node {
 
 def mvn(args) {
     env.JAVA_HOME="${tool 'jdk1.8.0_102'}"
-    sh "${tool 'Maven 3.x'}/bin/mvn ${args}"
+    try {
+        sh "${tool 'Maven 3.x'}/bin/mvn ${args}"
+    } catch(e) {
+        step([$class: 'Publisher'])
+        slackSend channel: "#reg_sla_monitoring", color: "warning", message: "Build Lab - ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Fail"
+        throw e
+    }
 }
