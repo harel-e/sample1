@@ -85,7 +85,7 @@
                                     <port>tomcat.port:8080</port>
                                 </ports>
                                 <wait>
-                                    <time>5000</time>
+                                    <time>10000</time>
                                 </wait>
                                 <log>
                                     <prefix>TC</prefix>

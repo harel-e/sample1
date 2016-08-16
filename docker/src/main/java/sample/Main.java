@@ -10,6 +10,9 @@ import java.net.InetSocketAddress;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("Started Web Server !!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
         server.createContext("/test", new MyHandler());
         server.setExecutor(null); // creates a default executor

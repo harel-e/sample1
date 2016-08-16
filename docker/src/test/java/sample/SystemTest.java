@@ -15,6 +15,7 @@ public class SystemTest {
     public void testIntB() throws Exception {
         for (int i=0;i<10;i++) {
             System.out.println("test B - "+i);
+            System.out.println("log.url="+System.getProperty("log.url"));
             Thread.sleep(2000);
         }
     }
