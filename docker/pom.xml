@@ -51,7 +51,7 @@
                                     <!-- Build configuration for creating images -->
                                     <!-- ....................................... -->
                                     <build>
-                                        <from>java:8u40</from>
+                                        <from>jeanblanchard/java:jre-8</from>
                                         <!-- Assembly descriptor holds the reference to the created artifact-->
                                         <assembly>
                                             <!-- Normally, one would only use 'assembly.xml' if we could put the assembly descriptor
