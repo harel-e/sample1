@@ -67,6 +67,10 @@
                                         <cmd>
                                             <shell>java -jar /maven/service.jar</shell>
                                         </cmd>
+                                        <tags>
+                                            <tag>${project.version}</tag>
+                                            <tag>latest</tag>
+                                        </tags>
                                     </build>
 
                                     <!-- ............................................................... -->
