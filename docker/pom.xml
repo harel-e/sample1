@@ -64,7 +64,7 @@
                                             <port>8080</port>
                                         </ports>
                                         <!-- Default command for the build image -->
-                                        <cmd>java -jar /maven/sample.jar</cmd>
+                                        <entryPoint>java -jar /maven/sample.jar</entryPoint>
                                         <tags>
                                             <tag>${project.version}</tag>
                                             <tag>latest</tag>
