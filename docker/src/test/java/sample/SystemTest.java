@@ -16,7 +16,7 @@ public class SystemTest {
         for (int i=0;i<10;i++) {
             System.out.println("test B - "+i);
             System.out.println("log.url="+System.getProperty("log.url"));
-            Thread.sleep(2000);
+            Thread.sleep(500);
         }
     }
 }

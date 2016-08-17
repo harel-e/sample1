@@ -14,122 +14,161 @@
     <artifactId>docker</artifactId>
     <version>${product.version}</version>
 
-    <dependencies>
-        <dependency>
-            <groupId>sample</groupId>
-            <artifactId>core</artifactId>
-            <version>${product.version}</version>
-        </dependency>
-    </dependencies>
+
+    <!--
+        <dependencies>
+            <dependency>
+                <groupId>sample</groupId>
+                <artifactId>core</artifactId>
+                <version>${product.version}</version>
+            </dependency>
+        </dependencies>
+    -->
+
+
+    <profiles>
+
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>2.6</version>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <mainClass>sample.Main</mainClass>
+                                    <classpathPrefix>lib/</classpathPrefix>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <!-- The Docker Maven plugin is used to create docker image with the fat jar -->
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.15.16</version>
+                        <configuration>
+                            <logDate>default</logDate>
+                            <autoPull>true</autoPull>
+                            <images>
+                                <!-- Image holding the artifact of this build -->
+                                <image>
+                                    <!-- Alias name which can used for linking containers during runtime -->
+                                    <alias>service</alias>
+                                    <name>sample/${project.artifactId}:${project.version}</name>
+
+                                    <!-- ....................................... -->
+                                    <!-- Build configuration for creating images -->
+                                    <!-- ....................................... -->
+                                    <build>
+                                        <from>java:8u40</from>
+                                        <!-- Assembly descriptor holds the reference to the created artifact-->
+                                        <assembly>
+                                            <!-- Normally, one would only use 'assembly.xml' if we could put the assembly descriptor
+                                                 into src/main/docker But this confuses the alexec plugin, so we put it into another
+                                                 directory and use an absolute pathe -->
+                                            <descriptor>${basedir}/src/main/fabric8/assembly.xml</descriptor>
+                                        </assembly>
+                                        <!-- Expose ports -->
+                                        <ports>
+                                            <port>8080</port>
+                                        </ports>
+                                        <!-- Default command for the build image -->
+                                        <cmd>java -jar /maven/sample.jar</cmd>
+                                    </build>
+
+                                    <!-- ............................................................... -->
+                                    <!-- Runtime configuration for starting/stopping/linking containers -->
+                                    <!-- ............................................................... -->
+                                    <run>
+                                        <!-- Assign dynamically mapped ports to maven variables (which can be reused in integration tests) -->
+                                        <ports>
+                                            <port>tomcat.port:8080</port>
+                                        </ports>
+                                        <wait>
+                                            <url>http://${docker.host.address}:${tomcat.port}/test</url>
+                                            <time>10000</time>
+                                        </wait>
+                                        <log>
+                                            <prefix>TC</prefix>
+                                            <color>cyan</color>
+                                        </log>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+
+                        <!-- Hooking into the lifecycle -->
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.19.1</version>
+                        <executions>
+                            <!--
+                                Invokes both the integration-test and the verify goals of the
+                                Failsafe Maven plugin
+                            -->
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <log.url>http://${docker.host.address}:${tomcat.port}</log.url>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
     <build>
         <plugins>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>sample.Main</mainClass>
-                            <classpathPrefix>lib/</classpathPrefix>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-
-            <plugin>
-                <!-- The Docker Maven plugin is used to create docker image with the fat jar -->
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.15.16</version>
-                <configuration>
-                    <logDate>default</logDate>
-                    <autoPull>true</autoPull>
-                    <images>
-                        <!-- Image holding the artifact of this build -->
-                        <image>
-                            <!-- Alias name which can used for linking containers during runtime -->
-                            <alias>service</alias>
-                            <name>sample/${project.artifactId}:${project.version}</name>
-
-                            <!-- ....................................... -->
-                            <!-- Build configuration for creating images -->
-                            <!-- ....................................... -->
-                            <build>
-                                <from>java:8u40</from>
-                                <!-- Assembly descriptor holds the reference to the created artifact-->
-                                <assembly>
-                                    <!-- Normally, one would only use 'assembly.xml' if we could put the assembly descriptor
-                                         into src/main/docker But this confuses the alexec plugin, so we put it into another
-                                         directory and use an absolute pathe -->
-                                    <descriptor>${basedir}/src/main/fabric8/assembly.xml</descriptor>
-                                </assembly>
-                                <!-- Expose ports -->
-                                <ports>
-                                    <port>8080</port>
-                                </ports>
-                                <!-- Default command for the build image -->
-                                <cmd>java -jar /maven/sample.jar</cmd>
-                            </build>
-
-                            <!-- ............................................................... -->
-                            <!-- Runtime configuration for starting/stopping/linking containers -->
-                            <!-- ............................................................... -->
-                            <run>
-                                <!-- Assign dynamically mapped ports to maven variables (which can be reused in integration tests) -->
-                                <ports>
-                                    <port>tomcat.port:8080</port>
-                                </ports>
-                                <wait>
-                                    <url>http://${docker.host.address}:${tomcat.port}/test</url>
-                                    <time>10000</time>
-                                </wait>
-                                <log>
-                                    <prefix>TC</prefix>
-                                    <color>cyan</color>
-                                </log>
-                            </run>
-                        </image>
-                    </images>
-                </configuration>
-
-                <!-- Hooking into the lifecycle -->
-                <executions>
-                    <execution>
-                        <id>start</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>2.17</version>
                 <executions>
-                    <!--
-                        Invokes both the integration-test and the verify goals of the
-                        Failsafe Maven plugin
-                    -->
                     <execution>
-                        <phase>integration-test</phase>
+                        <id>integration-test</id>
                         <goals>
                             <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <goals>
                             <goal>verify</goal>
                         </goals>
                     </execution>
@@ -141,6 +180,16 @@
                 </configuration>
             </plugin>
 
+
+            <!-- Tell surefire to skip test, we are using the failsafe plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.10</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
 
         </plugins>
     </build>
