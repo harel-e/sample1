@@ -64,7 +64,9 @@
                                             <port>8080</port>
                                         </ports>
                                         <!-- Default command for the build image -->
-                                        <cmd>java -jar /maven/sample.jar</cmd>
+                                        <cmd>
+                                            <shell>java -jar /maven/service.jar</shell>
+                                        </cmd>
                                     </build>
 
                                     <!-- ............................................................... -->
@@ -117,32 +119,6 @@
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
-
-
-                    <!--
-                                        <plugin>
-                                            <groupId>org.apache.maven.plugins</groupId>
-                                            <artifactId>maven-failsafe-plugin</artifactId>
-                                            <version>2.19.1</version>
-                                            <executions>
-                                                &lt;!&ndash;
-                                                    Invokes both the integration-test and the verify goals of the
-                                                    Failsafe Maven plugin
-                                                &ndash;&gt;
-                                                <execution>
-                                                    <goals>
-                                                        <goal>integration-test</goal>
-                                                        <goal>verify</goal>
-                                                    </goals>
-                                                </execution>
-                                            </executions>
-                                            <configuration>
-                                                <systemPropertyVariables>
-                                                    <log.url>http://${docker.host.address}:${tomcat.port}</log.url>
-                                                </systemPropertyVariables>
-                                            </configuration>
-                                        </plugin>
-                    -->
 
                 </plugins>
             </build>

@@ -15,7 +15,7 @@
     </prerequisites>
 
     <properties>
-        <product.version>1.0.6</product.version>
+        <product.version>1.0.7</product.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
