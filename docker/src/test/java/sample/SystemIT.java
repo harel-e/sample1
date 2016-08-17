@@ -1,8 +1,8 @@
 package sample;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
-public class SystemTest {
+public class SystemIT {
     @Test
     public void testIntA() throws Exception {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -14,8 +14,7 @@ public class SystemTest {
     @Test
     public void testIntB() throws Exception {
         for (int i=0;i<10;i++) {
-            System.out.println("test B - "+i);
-            System.out.println("log.url="+System.getProperty("log.url"));
+            System.out.println("SystemTest - B - "+i+" - log.url="+System.getProperty("log.url"));
             Thread.sleep(500);
         }
     }
