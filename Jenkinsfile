@@ -10,7 +10,7 @@ node {
 stage 'Integration Tests'
 
 node {
-        mvn 'clean test -Dgroups=unit,integration'
+        mvn 'clean test -Dgroups=integration'
 }
 
 stage 'Deploy'
