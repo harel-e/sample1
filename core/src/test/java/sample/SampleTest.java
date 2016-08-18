@@ -45,4 +45,8 @@ public class SampleTest {
     @Test
     public void testI() throws Exception {
     }
+
+    @Test
+    public void testJ() throws Exception {
+    }
 }
