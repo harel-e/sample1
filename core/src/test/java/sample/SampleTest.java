@@ -8,14 +8,17 @@ import static org.testng.Assert.fail;
 @Test(groups = "unit")
 public class SampleTest {
 
-    public static final int ACTUAL = 2;
-
     @Test
     public void testA() throws Exception {
         for (int i=0;i<10;i++) {
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             Thread.sleep(10);
         }
+    }
+
+    @Test
+    public void testB() throws Exception {
+        assertEquals(1, Sample.EXPECTED);
     }
 
     @Test
