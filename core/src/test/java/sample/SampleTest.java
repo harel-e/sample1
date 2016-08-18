@@ -2,10 +2,14 @@ package sample;
 
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 @Test(groups = "unit")
 public class SampleTest {
+
+    public static final int ACTUAL = 1;
+
     @Test
     public void testA() throws Exception {
         for (int i=0;i<10;i++) {
@@ -16,6 +20,7 @@ public class SampleTest {
 
     @Test
     public void testB() throws Exception {
+        assertEquals(ACTUAL,1);
     }
 
     @Test
