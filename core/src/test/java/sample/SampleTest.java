@@ -18,7 +18,7 @@ public class SampleTest {
 
     @Test
     public void testB() throws Exception {
-        assertEquals(2, Sample.EXPECTED);
+        assertEquals(3, Sample.EXPECTED);
     }
 
     @Test
