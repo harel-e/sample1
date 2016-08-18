@@ -8,7 +8,7 @@ import static org.testng.Assert.fail;
 @Test(groups = "unit")
 public class SampleTest {
 
-    public static final int ACTUAL = 1;
+    public static final int ACTUAL = 2;
 
     @Test
     public void testA() throws Exception {
@@ -16,11 +16,6 @@ public class SampleTest {
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             Thread.sleep(10);
         }
-    }
-
-    @Test
-    public void testB() throws Exception {
-        assertEquals(ACTUAL,1);
     }
 
     @Test
