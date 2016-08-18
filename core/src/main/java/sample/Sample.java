@@ -1,5 +1,5 @@
 package sample;
 
 public class Sample {
-    public static final int EXPECTED = 1;
+    public static final int EXPECTED = 2;
 }
