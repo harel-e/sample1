@@ -2,7 +2,7 @@ stage 'Unit Tests'
 
 node {
         checkout scm
-        mvn clean package -Dgroups=unit
+        mvn 'clean package -Dgroups=unit'
         archive 'core/target/*.jar'
         slackSend channel: "#reg_sla_monitoring", color: "good", message: "Build Lab - ${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Success"
 }
