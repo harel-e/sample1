@@ -12,7 +12,7 @@ public class SampleTest {
     public void testA() throws Exception {
         for (int i=0;i<10;i++) {
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            Thread.sleep(10);
+            Thread.sleep(20);
         }
     }
 
