@@ -11,4 +11,5 @@ gpg --import /Users/harel.efraim/git/sample1/core/src/test/resources/epp_tsig.gp
 gpg --yes --recipient EPP_TSIG_Test_Key --encrypt hello.txt
 gpg --output hello.out --decrypt hello.txt.gpg
 gpg --output hello.out --decrypt test.gpg
+gpg --decrypt test.asc
 gpg --output hello.out --decrypt test.asc
