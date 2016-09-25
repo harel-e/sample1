@@ -1,0 +1,14 @@
+http://wiki.servicenow.com/index.php?title=Sample_Java_BouncyCastle_Algorithm_for_Encryption#gsc.tab=0
+
+https://www.javacodegeeks.com/2011/06/java-pretty-good-privacy-pgp.html
+
+http://sloanseaman.com/wordpress/2012/05/13/revisited-pgp-encryptiondecryption-in-java/
+
+key: PzJaKPcBrKSb_ivXybD0svaREXQZ5x7
+
+gpg --import /Users/harel.efraim/git/sample1/core/src/test/resources/epp_tsig.asc
+gpg --import /Users/harel.efraim/git/sample1/core/src/test/resources/epp_tsig.gpg
+gpg --yes --recipient EPP_TSIG_Test_Key --encrypt hello.txt
+gpg --output hello.out --decrypt hello.txt.gpg
+gpg --output hello.out --decrypt test.gpg
+gpg --output hello.out --decrypt test.asc
